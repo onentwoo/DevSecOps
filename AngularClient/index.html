@@ -1,0 +1,114 @@
+<html>
+    <head>
+
+        <title> Octane Fortify Client </title>
+
+        <script src="node_modules/jquery/dist/jquery.js"></script>
+        <script src="angular.js"></script>
+        <script src="angular-route.js"></script>
+        <script src="angular-cookies.js"></script>
+        <script src="client.js"></script>
+        <script src="templates\details.js"></script>
+
+
+        <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+        <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+
+        <!--<script src="node_modules/angular-ui-grid/ui-grid.js"></script>-->
+        <!--<link href="node_modules/angular-ui-grid/ui-grid.min.css" rel="stylesheet">-->
+
+        <style>
+
+            .app {
+                position: relative;
+                height: calc(100% - 90px);;
+            }
+
+            .app-tree{
+                width: 250px;
+                display: inline-block;
+                height: 100%;
+                border-right: 1px solid black;
+            }
+
+            .content{
+
+                display: inline-block;
+                height: 80%;
+                position: absolute;
+            }
+
+            .critical{
+                color:red;
+            }
+
+            .high {
+                color: orange;;
+            }
+
+            .gridStyle {
+                border: 1px solid rgb(212,212,212);
+                width: 400px;
+                height: 300px
+            }
+
+
+
+        </style>
+    </head>
+    <body>
+
+
+
+        <h1 style="padding-left: 20px">
+            <img src="hpe-logo.png" />
+            <span style="padding-left: 20px"> Octane Fortify Client </span>
+
+            <img src="fortify.jpg"  style="height: 50px; float: right; padding-right: 20px"/>
+        </h1>
+
+        <div ng-app="fortify-module">
+
+            <div ng-controller="fortifyCtrl">
+
+                <div class="app" style="margin-top: 20px">
+
+
+                    <div class="app-tree">
+
+
+                        <ul class="list-group">
+
+                            <li class="list-group-item" ng-repeat="app in apps | orderBy: 'id'"
+                                ng-class="{'active': app.id === selectedApp.id}">
+
+                                <div style="padding: 10px" ng-click="selectApp(app)">
+
+                                    <div>ID: {{app.id}} </div>
+                                    <div> Name: {{app.project.name}} </div>
+                                    <div>
+                                        <div class="glyphicon glyphicon-user"></div>
+                                        Owner: {{app.owner}}
+                                    </div>
+
+                                </div>
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                    <div class="content">
+                        <div ng-view></div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </body>
+	
+
+</html>
