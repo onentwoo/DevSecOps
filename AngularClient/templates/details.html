@@ -1,0 +1,80 @@
+<div style="margin-left: 5px; margin-top: 10px">
+    <div> <b>ID: </b> {{selectedApp.id}} </div>
+    <div > <b> Description: </b> {{selectedApp.description}} </div>
+
+    <div style="margin-bottom: 10px" ng-if="selectedApp.id === 10"><b>pipeline: </b>upload from pipeline run #4 </div>
+
+    <div>
+        <span style="margin-bottom: 10px"> <b>Issues: </b></span>
+
+        <div style="margin-left: 5px">
+
+            <div>
+                <span style="display:inline-block; width: 400px"> <B> NAME </B> </span>
+
+                <span style="display:inline-block; width: 100px"> <B>SEVERITY </B></span>
+
+                <span style="display:inline-block; width: 200px"> <B>FILE</B> </span>
+
+                <span style="display:inline-block; width: 200px"> <B>Report Defect</B> </span>
+
+                <span style="display:inline-block; width: 200px"> <B>Attach to User Story</B> </span>
+
+                <!--<span style="display:inline-block; width: 200px"> <B>Commiters</B> </span>
+
+                <span style="display:inline-block; width: 200px"> <B>App Module</B> </span>-->
+            </div>
+
+
+            <div ng-repeat="issue in issues" style="padding: 4px">
+
+                <div>
+
+
+                    <span  style="display:inline-block; width: 400px"> <B></B> {{issue.issueName}} </span>
+                    <span style="display:inline-block; width: 100px"> <B></B>
+                        <span ng-class="{'critical': issue.friority === 'Critical',
+                                         'high': issue.friority === 'High',
+                                         'low': issue.friority === 'Low'}" >{{issue.friority}} </span>
+                    </span>
+                    <span style="display:inline-block; width: 200px"> <B></B>
+
+                        <span style="color: green">
+                            {{issue.primaryLocation}}
+                        </span>
+                    </span>
+
+                    <button class="btn btn-warning " ng-click="opendDefect(issue.issueName)" style="margin-right: 10px; width: 150px"
+                     ng-show="issue.friority === 'Critical' || issue.friority === 'High'">
+                        Open Defect
+                    </button>
+
+                    <a href="http://localhost.emea.hpqcorp.net:8080/ui/entity-navigation?p=2001/1002/&entityType=work_item&id=11032" target="_blank"
+                       style="margin-right: 10px;width: 200px"
+                            ng-show="issue.friority === 'High'" ng-if="selectedApp.id === 10" title = "commiter: James Bond &#013;Application Area: AGM WS">
+                        Refactor workspace management
+                    </a>
+
+                     <!-- <divs style="display:inline-block; width: 200px" ng-if="selectedApp.id === 10 && (issue.friority === 'Critical' || issue.friority === 'High')">
+
+                        <span>
+                            James bond
+                        </span>
+                    </divs>
+
+                    <divs style="display:inline-block; width: 200px" ng-if="selectedApp.id === 10 && (issue.friority === 'Critical' || issue.friority === 'High')">
+
+                        <span>
+                            AGM WS
+                        </span>
+                    </span> -->
+
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="gridStyle" ng-grid="gridOptions"></div>-->
+        <!--<div ng-grid="{ data: gridData }" style="width: 1000px; height: 250px"></div>-->
+
+    </div>
+</div>
